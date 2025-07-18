@@ -16,7 +16,6 @@ from seccion_poblacion import seccion_poblacion
 from seccion_desempleo import seccion_desempleo
 from seccion_fecundidad import seccion_fecundidad
 from seccion_mortalidad import seccion_mortalidad
-from seccion_datos_electorales import seccion_datos_electorales
 
 # ========================================
 # CONFIGURACIÓN INICIAL
@@ -51,8 +50,7 @@ with st.sidebar:
                     'poblacion': '👥 Población',
                     'desempleo': '💼 Desempleo',
                     'fecundidad': '👶 Fecundidad',
-                    'mortalidad': '⚰️ Mortalidad',
-                    'datos_electorales': '🗳️ Datos Electorales'
+                    'mortalidad': '⚰️ Mortalidad'
                 }.get(seccion, seccion.title()),
                 value=True
             )
@@ -129,15 +127,16 @@ if secciones_activas.get('mortalidad', False):
     )
     separar_seccion()
 
-if secciones_activas.get('datos_electorales', False):
-    seccion_datos_electorales.render(
-        departamentos_seleccionados=departamentos_seleccionados,
-        mostrar_depuracion=mostrar_graficos_adicionales,
-        mostrar_nuevos=mostrar_graficos_adicionales,
-        mostrar_comparativo=mostrar_graficos_adicionales,
-        mostrar_tabla=mostrar_tablas  # Control de tablas
-    )
-    separar_seccion()
+# Datos electorales deshabilitados por request del usuario
+# if secciones_activas.get('datos_electorales', False):
+#     seccion_datos_electorales.render(
+#         departamentos_seleccionados=departamentos_seleccionados,
+#         mostrar_depuracion=mostrar_graficos_adicionales,
+#         mostrar_nuevos=mostrar_graficos_adicionales,
+#         mostrar_comparativo=mostrar_graficos_adicionales,
+#         mostrar_tabla=mostrar_tablas  # Control de tablas
+#     )
+#     separar_seccion()
 
 # ========================================
 # EXPORTACIÓN DE DATOS
@@ -162,8 +161,9 @@ if secciones_activas.get('fecundidad', False):
 if secciones_activas.get('mortalidad', False):
     datos_exportacion['Mortalidad'] = datos_bolivia.get_datos_mortalidad()
 
-if secciones_activas.get('datos_electorales', False):
-    datos_exportacion['Datos_Electorales'] = datos_bolivia.get_datos_electorales()
+# Datos electorales deshabilitados
+# if secciones_activas.get('datos_electorales', False):
+#     datos_exportacion['Datos_Electorales'] = datos_bolivia.get_datos_electorales()
 
 # Renderizar botones de exportación
 if datos_exportacion:
