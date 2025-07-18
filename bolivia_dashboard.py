@@ -17,7 +17,6 @@ from seccion_desempleo import seccion_desempleo
 from seccion_fecundidad import seccion_fecundidad
 from seccion_mortalidad import seccion_mortalidad
 from seccion_datos_electorales import seccion_datos_electorales
-from seccion_educacion import seccion_educacion
 
 # ========================================
 # CONFIGURACIÓN INICIAL
@@ -53,8 +52,7 @@ with st.sidebar:
                     'desempleo': '💼 Desempleo',
                     'fecundidad': '👶 Fecundidad',
                     'mortalidad': '⚰️ Mortalidad',
-                    'datos_electorales': '🗳️ Datos Electorales',
-                    'educacion': '📚 Educación'
+                    'datos_electorales': '🗳️ Datos Electorales'
                 }.get(seccion, seccion.title()),
                 value=True
             )
@@ -125,7 +123,7 @@ if secciones_activas.get('fecundidad', False):
 
 if secciones_activas.get('mortalidad', False):
     seccion_mortalidad.render(
-        mostrar_covid=mostrar_graficos_adicionales,
+        mostrar_defunciones=mostrar_graficos_adicionales,
         mostrar_comparativo=mostrar_graficos_adicionales,
         mostrar_tabla=mostrar_tablas  # Control de tablas
     )
@@ -137,16 +135,6 @@ if secciones_activas.get('datos_electorales', False):
         mostrar_depuracion=mostrar_graficos_adicionales,
         mostrar_nuevos=mostrar_graficos_adicionales,
         mostrar_comparativo=mostrar_graficos_adicionales,
-        mostrar_tabla=mostrar_tablas  # Control de tablas
-    )
-    separar_seccion()
-
-if secciones_activas.get('educacion', False):
-    seccion_educacion.render(
-        departamentos_seleccionados=departamentos_seleccionados,
-        mostrar_niveles=mostrar_graficos_adicionales,
-        mostrar_universitaria=mostrar_graficos_adicionales,
-        mostrar_brechas=mostrar_graficos_adicionales,
         mostrar_tabla=mostrar_tablas  # Control de tablas
     )
     separar_seccion()
@@ -176,11 +164,6 @@ if secciones_activas.get('mortalidad', False):
 
 if secciones_activas.get('datos_electorales', False):
     datos_exportacion['Datos_Electorales'] = datos_bolivia.get_datos_electorales()
-
-if secciones_activas.get('educacion', False):
-    temporal, departamental = datos_bolivia.get_datos_educacion()
-    datos_exportacion['Educacion_Temporal'] = temporal
-    datos_exportacion['Educacion_Departamental'] = departamental
 
 # Renderizar botones de exportación
 if datos_exportacion:

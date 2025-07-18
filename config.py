@@ -9,8 +9,7 @@ SECCIONES_VISIBLES = {
     'desempleo': True,
     'fecundidad': True,
     'mortalidad': True,
-    'datos_electorales': True,
-    'educacion': True
+    'datos_electorales': True
 }
 
 # Configuración general

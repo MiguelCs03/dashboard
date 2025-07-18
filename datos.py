@@ -99,12 +99,12 @@ class DatosBolivia:
                 pd.DataFrame(datos_edad_madre))
     
     def get_datos_mortalidad(self):
-        """Datos de mortalidad general"""
+        """Datos de mortalidad general - Bolivia (datos reales)"""
         datos = {
-            'Año': [2020, 2021, 2022, 2023, 2024],
-            'Mortalidad_General': [7.8, 8.2, 7.9, 7.6, 7.4],
-            'Esperanza_Vida': [70.2, 69.8, 70.1, 70.5, 70.8],
-            'Mortalidad_COVID': [245, 180, 95, 42, 18]
+            'Año': [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+            'Defunciones': [81092, 81778, 82468, 82947, 83678, 84640, 87015, 88177, 128041, 140753, 92765, 87815],
+            'Tasa_Mortalidad': [7.84, 7.78, 7.73, 7.66, 7.61, 7.59, 7.56, 7.56, 10.84, 11.79, 7.68, 7.17],
+            'Esperanza_Vida': [69.8, 69.9, 70.1, 70.3, 70.5, 70.7, 70.9, 71.1, 70.8, 70.6, 70.9, 71.2]
         }
         return pd.DataFrame(datos)
     
@@ -121,26 +121,6 @@ class DatosBolivia:
         df['Total_Padrón'] = df['Habilitados_2025'] + df['Inhabilitados']
         df['Porcentaje_Habilitados'] = (df['Habilitados_2025'] / df['Total_Padrón']) * 100
         return df
-    
-    def get_datos_educacion(self):
-        """Datos educativos"""
-        # Datos por año
-        años_alfabetizacion = {
-            'Año': [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-            'Alfabetización_%': [95.37, 95.45, 95.52, 95.60, 95.68, 95.75, 95.83, 95.90, 95.98, 96.06],
-            'Analfabetismo_%': [4.63, 4.55, 4.48, 4.40, 4.32, 4.25, 4.17, 4.10, 4.02, 3.94]
-        }
-        
-        # Datos por departamento
-        educacion_departamental = {
-            'Departamento': self.departamentos,
-            'Alfabetización_%': [97.2, 96.8, 96.5, 93.2, 94.8, 97.8, 95.1, 92.4, 89.7],
-            'Primaria_Completa_%': [92.5, 91.8, 90.2, 85.6, 87.9, 93.1, 88.4, 84.2, 81.3],
-            'Secundaria_Completa_%': [78.9, 82.1, 75.6, 65.2, 69.8, 81.4, 71.2, 62.8, 58.9],
-            'Universitaria_%': [25.4, 28.9, 22.1, 15.2, 18.7, 26.8, 19.3, 14.6, 12.1]
-        }
-        
-        return pd.DataFrame(años_alfabetizacion), pd.DataFrame(educacion_departamental)
     
     def get_evolucion_poblacion_historica(self):
         """Datos de evolución poblacional histórica 1950-2024"""
